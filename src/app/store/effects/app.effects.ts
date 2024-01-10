@@ -16,8 +16,6 @@ export class AppEffects {
     ))
   ));
 
-  // Add other effects as needed
-
   constructor(
     private actions$: Actions,
     private githubService: GithubService

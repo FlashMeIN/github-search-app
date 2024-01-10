@@ -30,5 +30,4 @@ export const appReducer = createReducer(
     ...state,
     searchResults: [],
   })),
-  // Add other actions for handling search results
 );

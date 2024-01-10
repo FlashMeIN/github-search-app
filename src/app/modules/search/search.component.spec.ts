@@ -9,7 +9,6 @@ import { GithubService } from '../../services/github/github.service';
 import { Store, StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as AppActions from '../../store/actions/app.actions';
-import { selectSearchResults } from '../../store/selectors/app.selectors';
 import { of, throwError } from 'rxjs';
 import { appReducer } from 'src/app/store/reducers/app.reducers';
 
@@ -41,7 +40,6 @@ describe('SearchComponent', () => {
   });
 
   it('should dispatch actions on search', fakeAsync(() => {
-    // Arrange
     const mockSearchResults = [
       {
         login: 'sushil',
@@ -85,12 +83,10 @@ describe('SearchComponent', () => {
       of({ items: mockSearchResults })
     );
 
-    // Act
     component.searchTerm = 'testuser';
     component.search();
     tick();
 
-    // Assert
     expect(mockStore.dispatch).toHaveBeenCalledWith(
       AppActions.addSearchHistory({
         query: 'testuser',
@@ -108,7 +104,6 @@ describe('SearchComponent', () => {
     component.search();
     tick();
 
-    // Assert
     expect(mockStore.dispatch).not.toHaveBeenCalledWith(
       AppActions.addSearchHistory({query: 'testuser', results: []})
     ); // Ensure that addSearchHistory is not called on error

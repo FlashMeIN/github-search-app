@@ -15,9 +15,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   searchResults$: Observable<GithubUser[]> | undefined;
 
-  constructor(private githubService: GithubService, private store: Store) {
-    // Subscribe to the store to get the search results and search history
-  }
+  constructor(private githubService: GithubService, private store: Store) {}
 
   ngOnInit(): void {
     this.searchResults$ = this.store.select(selectSearchResults);
@@ -25,18 +23,15 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   search(): void {
     if (this.searchTerm.trim() !== '') {
-      // Dispatch the addSearchHistory action to update the search history in the store
       
       this.githubService.searchUsers(this.searchTerm).subscribe(
         (data: any) => {
-          // Assuming data is an array of users
-          // Dispatch the setSearchResults action to update the search results in the store
           this.store.dispatch(AppActions.addSearchHistory({ query: this.searchTerm, results: data.items}));
           this.store.dispatch(AppActions.setSearchResults({ results: data.items }));
         },
         (error) => {
+          // TODO: Add a toastr
           console.error('Error during user search:', error);
-          // Handle error
         }
       );
     }
