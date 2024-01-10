@@ -1,0 +1,24 @@
+<div class="search-container">
+  <div class="search-input">
+    <input
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="search()"
+      placeholder="Enter username"
+    />
+    <button (click)="search()">Search</button>
+  </div>
+
+  <div *ngIf="searchResults$ | async as results" class="search-results">
+      <h2 *ngIf="results.length" class="search-results__title">Search Results:</h2>
+      <ul class="search-results__list">
+          <li *ngFor="let user of results" class="search-results__item">
+        <div class="search-results__avatar">
+          <img [src]="user.avatar_url" alt="{{ user.login }} avatar" />
+        </div>
+        <div class="search-results__username">
+          <a [href]="user.html_url" target="_blank">{{ user.login }}</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

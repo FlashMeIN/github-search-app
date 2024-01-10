@@ -1,0 +1,65 @@
+/* app.component.scss */
+$nav-color: #337ab7;
+$font-color: #616582;
+$bg-white: #ffffff;
+$bg-view: #fbfcfe;
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: $bg-white;
+  color: $font-color;
+  padding: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it's above other elements */
+  box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+
+  .app-logo {
+    font-size: 24px;
+    font-weight: bold;
+
+    img {
+      width: 50px;
+    }
+  }
+
+  .app-nav {
+    display: flex;
+    gap: 20px;
+    a {
+        padding: 18px;
+        text-decoration: none;
+        font-weight: bold;
+        &:active {
+            color: inherit;
+        }
+    }
+
+    .active {
+      border-bottom: 2px solid $nav-color;
+    }
+  }
+}
+
+.view-container {
+    flex: 1;
+    background: $bg-view;
+}
+
+.app-footer {
+  background-color: #333;
+  color: $bg-white;
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+}
